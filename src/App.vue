@@ -37,21 +37,18 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
-      <Home/>
-    </v-main>
+    <v-content>
+      <router-view/>
+    </v-content>
   </v-app>
 </template>
 
 <script>
-import Home from './components/home/Home';
 
 export default {
   name: 'App',
 
-  components: {
-    Home,
-  },
+  components: {},
 
   data: () => ({
     //

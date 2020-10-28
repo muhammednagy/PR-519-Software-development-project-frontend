@@ -7,6 +7,10 @@ const router = new VueRouter({
     routes: [
         {
             path: "/",
+            redirect: "/home"
+        },
+        {
+            path: "/home",
             meta: {
                 title: 'HomePage'
             },
@@ -22,7 +26,7 @@ const router = new VueRouter({
     ]
 });
 
-const DEFAULT_TITLE = 'FamHi';
+const DEFAULT_TITLE = 'FunHi';
 router.afterEach((to) => {
     // Use next tick to handle router history correctly
     // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609

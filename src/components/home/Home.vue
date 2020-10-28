@@ -30,7 +30,7 @@
             elevation="8"
             rounded
             x-large
-            href="/login"
+            to="/login"
         >Login</v-btn>
       </v-col>
       <v-col
@@ -43,7 +43,7 @@
             elevation="8"
             rounded
             x-large
-            href="/signup"
+            to="/signup"
         >Sign up</v-btn>
       </v-col>
     </v-row>
