@@ -23,6 +23,13 @@ const router = new VueRouter({
             },
             component: () => import("@/components/authentication/Login")
         },
+        {
+            path: "/signup",
+            meta: {
+                title: 'Signup'
+            },
+            component: () => import("@/components/authentication/Signup")
+        },
     ]
 });
 
