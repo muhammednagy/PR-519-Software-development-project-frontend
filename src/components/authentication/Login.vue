@@ -11,50 +11,76 @@
       </v-col>
 
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to NiceHi
-        </h1>
+        <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
+        >
+          <v-text-field
+              v-model="form.email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+          ></v-text-field>
 
-        <p class="subheading font-weight-regular">
-          A platform to meet people with similar minds and interests
-        </p>
+          <v-text-field
+              v-model="form.password"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="passwordRules"
+              :type="showPassword ? 'text' : 'password'"
+              name="input-10-1"
+              label="Password"
+              hint="At least 8 characters"
+              counter
+              @click:append="showPassword = !showPassword"
+          ></v-text-field>
+
+          <v-btn
+              :disabled="!valid"
+              color="success"
+              class="mr-4"
+              @click="validate"
+          >
+            Login
+          </v-btn>
+
+        </v-form>
       </v-col>
 
-      <v-col
-          class="mb-5"
-          cols="12"
-      >
 
-        <v-btn
-            color="primary"
-            elevation="8"
-            rounded
-            x-large
-            href="/login"
-        >sdsds</v-btn>
-      </v-col>
-      <v-col
-          class="mb-5"
-          cols="12"
-      >
-
-        <v-btn
-            color="primary"
-            elevation="8"
-            rounded
-            x-large
-            href="/signup"
-        >Sign up</v-btn>
-      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
 export default {
-  name: 'Login',
-
   data: () => ({
+    form: {
+      email: '',
+      password: '',
+    },
+    valid: false,
+    showPassword: false,
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    ],
+    passwordRules: [
+      v => !!v || 'Password is required',
+      v => v.length >= 8 || 'Min 8 characters',
+    ],
   }),
+
+  methods: {
+    validate () {
+      this.$store.dispatch("user/login", this.form)
+    },
+    reset () {
+      this.$refs.form.reset()
+    },
+    resetValidation () {
+      this.$refs.form.resetValidation()
+    },
+  },
 }
 </script>
